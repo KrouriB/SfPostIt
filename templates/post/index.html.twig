@@ -3,18 +3,37 @@
 {% block title %}Hello PostController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="">
+    <form action="">
+        {{ form_errors(post) }}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/SfPostIt/src/Controller/PostController.php'|file_link(0) }}">src/Controller/PostController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/SfPostIt/templates/post/index.html.twig'|file_link(0) }}">templates/post/index.html.twig</a></code></li>
-    </ul>
+        {{ form_start(post) }}
+            {{ form_row(post.titre) }}
+            {{ form_row(post.dateLimite) }}
+            {{ form_row(post.information) }}
+        {{ form_end(post) }}
+    </form>
+</div>
+<div class="">
+    <h2>PostIt A faire</h2>
+    {% for post in aFaire %}
+        <div class="">
+            <h3>{{ post.titre }}</h3>
+            <p>{{ post.information }}</p>
+            <span>{{ post.dateCreation|date('d/m/Y') }}</span>
+            <span>{{ post.dateLimite|date('d/m/Y') }}</span>
+        </div>
+    {% endfor %}
+</div>
+<div class="">
+    <h2>PostIt Terminer</h2>
+    {% for post in terminer %}
+        <div class="">
+            <h3>{{ post.titre }}</h3>
+            <p>{{ post.information }}</p>
+            <span>{{ post.dateCreation|date('d/m/Y') }}</span>
+            <span>{{ post.dateLimite|date('d/m/Y') }}</span>
+        </div>
+    {% endfor %}
 </div>
 {% endblock %}

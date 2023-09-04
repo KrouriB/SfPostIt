@@ -10,9 +10,18 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            <script src="{{ asset('bundles/tinymce/ext/tinymce/tinymce.min.js') }}"></script>
+            <script src="{{ asset('bundles/tinymce/ext/tinymce-webcomponent.js') }}" type="module"></script>
+            <script>
+                tinymce.init({
+                    selector: 'textarea#post_information'
+                })
+            </script>
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <main>
+            {% block body %}{% endblock %}
+        </main>
     </body>
 </html>
