@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+<div class="">
+    {{ form_errors(post) }}
+
+    {{ form_start(post) }}
+        {{ form_row(post.titre) }}
+        {{ form_row(post.dateLimite) }}
+        {{ form_row(post.information) }}
+        {{ form_row(post.valider) }}
+    {{ form_end(post) }}
+</div>
+{% endblock %}

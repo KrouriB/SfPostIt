@@ -20,6 +20,14 @@
         {% endblock %}
     </head>
     <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="{{ path('app_post') }}">Post</a></li>
+                    <li><a href="{{ path('app_new') }}">New</a></li>
+                </ul>
+            </nav>
+        </header>
         <main>
             {% block body %}{% endblock %}
         </main>

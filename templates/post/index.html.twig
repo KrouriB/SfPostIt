@@ -4,17 +4,6 @@
 
 {% block body %}
 <div class="">
-    <form action="">
-        {{ form_errors(post) }}
-
-        {{ form_start(post) }}
-            {{ form_row(post.titre) }}
-            {{ form_row(post.dateLimite) }}
-            {{ form_row(post.information) }}
-        {{ form_end(post) }}
-    </form>
-</div>
-<div class="">
     <h2>PostIt A faire</h2>
     {% for post in aFaire %}
         <div class="">
