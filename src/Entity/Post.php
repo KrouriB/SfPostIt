@@ -17,17 +17,17 @@ class Post
     #[ORM\Column(length: 80)]
     private ?string $titre = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateLimite = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateCreation = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $information = null;
 
     #[ORM\Column(length: 50)]
     private ?string $etat = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $dateLimite = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $dateCreation = null;
 
     public function getId(): ?int
     {
@@ -42,30 +42,6 @@ class Post
     public function setTitre(string $titre): static
     {
         $this->titre = $titre;
-
-        return $this;
-    }
-
-    public function getDateLimite(): ?\DateTimeInterface
-    {
-        return $this->dateLimite;
-    }
-
-    public function setDateLimite(\DateTimeInterface $dateLimite): static
-    {
-        $this->dateLimite = $dateLimite;
-
-        return $this;
-    }
-
-    public function getDateCreation(): ?\DateTimeInterface
-    {
-        return $this->dateCreation;
-    }
-
-    public function setDateCreation(\DateTimeInterface $dateCreation): static
-    {
-        $this->dateCreation = $dateCreation;
 
         return $this;
     }
@@ -90,6 +66,30 @@ class Post
     public function setEtat(string $etat): static
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getDateLimite(): ?\DateTimeInterface
+    {
+        return $this->dateLimite;
+    }
+
+    public function setDateLimite(\DateTimeInterface $dateLimite): static
+    {
+        $this->dateLimite = $dateLimite;
+
+        return $this;
+    }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $dateCreation): static
+    {
+        $this->dateCreation = $dateCreation;
 
         return $this;
     }
