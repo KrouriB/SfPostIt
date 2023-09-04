@@ -20,8 +20,6 @@ public function __construct(ManagerRegistry $registry)
 {
     parent::__construct($registry, Post::class);
 }
-
-<<  << <<< HEAD
     //    /**
     //     * @return Post[] Returns an array of Post objects
     //     */
@@ -46,7 +44,6 @@ public function __construct(ManagerRegistry $registry)
     //            ->getOneOrNullResult()
     //        ;
     //    }
-=======
 //    /**
 //     * @return Post[] Returns an array of Post objects
 //     */
@@ -71,5 +68,4 @@ public function __construct(ManagerRegistry $registry)
 //            ->getOneOrNullResult()
 //        ;
 //    }
->>>>>>> d895528dfd8ca5352f2dc0406b5fb59360676c0a
 }
