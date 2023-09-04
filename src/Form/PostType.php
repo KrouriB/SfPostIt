@@ -7,9 +7,11 @@ use Symfony\Component\Form\AbstractType;
 use Eckinox\TinymceBundle\Form\Type\TinymceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
 
 class PostType extends AbstractType
 {
@@ -28,21 +30,25 @@ class PostType extends AbstractType
             )
             ->add(
                 'dateLimite',
-                DateTimeType::class,
+                DateType::class,
                 [
-                    // 'widget' => 'single_text',
-                    'attr' => [
-                        'class' => 'form-control'
-                    ]
+                    'widget' => 'single_text',
+                    // 'attr' => [
+                    //     'class' => 'form-control'
+                    // ],
+                    // 'data' => [
+                    //     'time' => [
+                    //         'second' => '0'
+                    //     ]
+                    // ]
                 ]
             )
             ->add(
                 'dateCreation',
-                HiddenType::class,
-                [
-                    // 'format' => 'YYYY-mm-dd HH:ii:ss',
-                    'data' => $dt->format('Y-m-d H:i:s'),
-                ]
+                DateType::class,
+                // [
+                //     'data' => $dt,
+                // ]
             )
             ->add(
                 'information',
@@ -55,9 +61,20 @@ class PostType extends AbstractType
             )
             ->add(
                 'etat',
-                HiddenType::class, [
+                HiddenType::class,
+                [
                     'data'  => 'A faire',
-                ]);
+                ]
+            )
+            ->add(
+                'valider',
+                SubmitType::class,
+                [
+                    'attr' => [
+                        'class' => 'btn btn-success'
+                    ]
+                ]
+            );
         ;
     }
 
