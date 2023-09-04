@@ -17,8 +17,5 @@ class PostController extends AbstractController
             'controller_name' => 'PostController',
             ]
         );
-        return $this->render('post/index.html.twig', [
-            'controller_name' => 'PostController',
-        ]);
     }
 }
