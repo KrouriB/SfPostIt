@@ -13,8 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PostController extends AbstractController
 {
-    #[Route('/post', name: 'app_post')]
-    public function index(Request $request, PostRepository $postRepository, EntityManagerInterface $entityManager): Response
+    #[Route('/post/new', name: 'app_new')]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $post = new Post();
 
@@ -31,12 +31,25 @@ class PostController extends AbstractController
         }
 
         $today = date('Y-m-d H:i:s');
+        return $this->render(
+            'post/new.html.twig',
+            [
+                'post' => $form->createView(),
+                'today' => $today,
+            ]
+        );
+    }
+
+    #[Route('/post', name: 'app_post')]
+    public function index(PostRepository $postRepository): Response
+    {
+
+        $today = date('Y-m-d H:i:s');
         $aFaire = $postRepository->findByPostAFaire();
         $terminer = $postRepository->findByPostTerminer();
         return $this->render(
             'post/index.html.twig',
             [
-                'post' => $form->createView(),
                 'today' => $today,
                 'aFaire' => $aFaire,
                 'terminer' => $terminer,
