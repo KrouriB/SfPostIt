@@ -26,8 +26,9 @@ class PostRepository extends ServiceEntityRepository
     public function findByPostAFaire(): array
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.etat = A faire')
+            ->andWhere('p.etat = :etat')
             ->orderBy('p.dateLimite', 'ASC')
+            ->setParameter('etat', 'A faire')
             ->getQuery()
             ->getResult()
         ;
@@ -39,8 +40,9 @@ class PostRepository extends ServiceEntityRepository
     public function findByPostTerminer(): array
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.etat = Terminer')
+            ->andWhere('p.etat = :etat')
             ->orderBy('p.dateLimite', 'ASC')
+            ->setParameter('etat', 'Terminer')
             ->getQuery()
             ->getResult()
         ;
