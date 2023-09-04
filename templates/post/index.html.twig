@@ -8,7 +8,7 @@
     {% for post in aFaire %}
         <div class="">
             <h3>{{ post.titre }}</h3>
-            <p>{{ post.information }}</p>
+            {{ post.information|raw  }}
             <span>{{ post.dateCreation|date('d/m/Y') }}</span>
             <span>{{ post.dateLimite|date('d/m/Y') }}</span>
         </div>
