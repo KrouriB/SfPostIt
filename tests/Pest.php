@@ -1,14 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-namespace App\Tests;
-
-use App\Tests\Helpers\PasswordSameAssertion;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-
-uses(KernelTestCase::class, PasswordSameAssertion::class)->in('Unit');
-
 /*
 |--------------------------------------------------------------------------
 | Test Case

@@ -62,13 +62,6 @@ class PostType extends AbstractType
                 ]
             )
             ->add(
-                'etat',
-                HiddenType::class,
-                [
-                    'data'  => 'A faire',
-                ]
-            )
-            ->add(
                 'valider',
                 SubmitType::class,
                 [
