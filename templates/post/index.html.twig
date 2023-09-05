@@ -3,28 +3,32 @@
 {% block title %}Hello PostController!{% endblock %}
 
 {% block body %}
-<div class="">
-    <h2>PostIt A faire</h2>
+<div class="flex flex-col justify-around">
+    <h2>PostIt A faire :</h2>
     {% for post in aFaire %}
-        <div class="">
+        <div class="flex flex-col basis-4/5">
             <h3>{{ post.titre }}</h3>
-            {{ post.information|raw  }}
-            <span>{{ post.dateCreation|date('d/m/Y') }}</span>
-            <span>{{ post.dateLimite|date('d/m/Y') }}</span>
-            <a href="{{ path('app_fini',{'id': post.id }) }}">Tache fini</a>
+            <div class="p-2">
+                {{ post.information|raw }}
+            </div>
+            <span>Date de Creation : {{ post.dateCreation|date('d/m/Y') }}</span>
+            <span>Date Limite : {{ post.dateLimite|date('d/m/Y') }}</span>
+            <a href="{{ path('app_fini',{'id': post.id }) }}" class="self-end">Tache fini</a>
         </div>
     {% endfor %}
 </div>
-<div class="">
-    <h2>PostIt Terminer</h2>
+<div class="flex flex-col justify-around">
+    <h2>PostIt Terminer :</h2>
     {% for post in terminer %}
-        <div class="">
+        <div class="flex flex-col basis-4/5">
             <h3>{{ post.titre }}</h3>
-            {{ post.information|raw }}
-            <span>{{ post.dateCreation|date('d/m/Y') }}</span>
-            <span>{{ post.dateLimite|date('d/m/Y') }}</span>
+            <div class="p-2">
+                {{ post.information|raw }}
+            </div>
+            <span>Date de Creation : {{ post.dateCreation|date('d/m/Y') }}</span>
+            <span>Date Limite : {{ post.dateLimite|date('d/m/Y') }}</span>
             {% if post.dateLimite|date('Y-m-d') > today|date('Y-m-d') %}
-                <a href="{{ path('app_refaire',{'id': post.id }) }}">A refaire</a>
+                <a href="{{ path('app_refaire',{'id': post.id }) }}" class="self-end">A refaire</a>
             {% endif %}
         </div>
     {% endfor %}
