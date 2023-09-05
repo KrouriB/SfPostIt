@@ -60,7 +60,7 @@ class PostController extends AbstractController
             return $this->redirectToRoute('app_post');
         }
 
-        $today = date('Y-m-d H:i:s');
+        $today = date('Y-m-d');
         return $this->render(
             'post/new.html.twig',
             [
@@ -74,7 +74,7 @@ class PostController extends AbstractController
     public function index(PostRepository $postRepository): Response
     {
 
-        $today = date('Y-m-d H:i:s');
+        $today = date('Y-m-d');
         $aFaire = $postRepository->findByPostAFaire();
         $terminer = $postRepository->findByPostTerminer();
         return $this->render(

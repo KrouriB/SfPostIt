@@ -23,7 +23,9 @@
             {{ post.information|raw }}
             <span>{{ post.dateCreation|date('d/m/Y') }}</span>
             <span>{{ post.dateLimite|date('d/m/Y') }}</span>
-            <a href="{{ path('app_refaire',{'id': post.id }) }}">A refaire</a>
+            {% if post.dateLimite|date('Y-m-d') > today|date('Y-m-d') %}
+                <a href="{{ path('app_refaire',{'id': post.id }) }}">A refaire</a>
+            {% endif %}
         </div>
     {% endfor %}
 </div>
