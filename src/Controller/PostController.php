@@ -13,6 +13,36 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PostController extends AbstractController
 {
+    #[Route('/post/{id}/fini', name: 'app_fini')]
+    public function fini(Request $request, Post $post, EntityManagerInterface $entityManager): Response
+    {
+        $postId = $request->get('id');
+
+        $post = $entityManager->getRepository(Post::class)->find($postId);
+
+        $post->setEtat('Terminer');
+
+        $entityManager->persist($post);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_post');
+    }
+
+    #[Route('/post/{id}/refaire', name: 'app_refaire')]
+    public function refaire(Request $request, Post $post, EntityManagerInterface $entityManager): Response
+    {
+        $postId = $request->get('id');
+
+        $post = $entityManager->getRepository(Post::class)->find($postId);
+
+        $post->setEtat('A faire');
+
+        $entityManager->persist($post);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_post');
+    }
+
     #[Route('/post/new', name: 'app_new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
