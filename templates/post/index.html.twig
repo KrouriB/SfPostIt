@@ -11,6 +11,7 @@
             {{ post.information|raw  }}
             <span>{{ post.dateCreation|date('d/m/Y') }}</span>
             <span>{{ post.dateLimite|date('d/m/Y') }}</span>
+            <a href="{{ path('app_fini',{'id': post.id }) }}">Tache fini</a>
         </div>
     {% endfor %}
 </div>
@@ -19,9 +20,10 @@
     {% for post in terminer %}
         <div class="">
             <h3>{{ post.titre }}</h3>
-            <p>{{ post.information }}</p>
+            {{ post.information|raw }}
             <span>{{ post.dateCreation|date('d/m/Y') }}</span>
             <span>{{ post.dateLimite|date('d/m/Y') }}</span>
+            <a href="{{ path('app_refaire',{'id': post.id }) }}">A refaire</a>
         </div>
     {% endfor %}
 </div>
