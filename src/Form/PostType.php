@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use DateInterval;
 use App\Entity\Post;
 use Symfony\Component\Form\AbstractType;
 use Eckinox\TinymceBundle\Form\Type\TinymceType;
@@ -17,7 +18,8 @@ class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $dt = new \DateTime();
+        $today = new \DateTime();
+        $tomorrow = $today->add(new DateInterval('P1D'));
         $builder
             ->add(
                 'titre',
@@ -33,9 +35,9 @@ class PostType extends AbstractType
                 DateType::class,
                 [
                     'widget' => 'single_text',
-                    // 'attr' => [
-                    //     'class' => 'form-control'
-                    // ],
+                    'attr' => [
+                        'min' => $tomorrow->format('Y-m-d'),
+                    ],
                     // 'data' => [
                     //     'time' => [
                     //         'second' => '0'
