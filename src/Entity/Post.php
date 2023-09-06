@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\PostRepository;
+use DateTime;
+use InvalidArgumentException;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PostRepository;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
@@ -20,14 +22,24 @@ class Post
     #[ORM\Column(type: Types::TEXT)]
     private ?string $information = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $etat = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $dateCreation = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateLimite = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateCreation = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $dateFaite = null;
+
+    public function __construct(DateTime $date = null)
+    {
+        $this->dateCreation = new DateTime();
+        $this->dateLimite = $date;
+
+        if ($this->dateLimite instanceof DateTime && $this->dateLimite < $this->dateCreation) {
+            throw new InvalidArgumentException("bad value");
+        }
+    }
 
     public function getId(): ?int
     {
@@ -58,14 +70,14 @@ class Post
         return $this;
     }
 
-    public function getEtat(): ?string
+    public function getDateCreation(): ?\DateTimeInterface
     {
-        return $this->etat;
+        return $this->dateCreation;
     }
 
-    public function setEtat(string $etat): static
+    public function setDateCreation(\DateTimeInterface $dateCreation): static
     {
-        $this->etat = $etat;
+        $this->dateCreation = $dateCreation;
 
         return $this;
     }
@@ -82,15 +94,25 @@ class Post
         return $this;
     }
 
-    public function getDateCreation(): ?\DateTimeInterface
+    public function getDateFaite(): ?\DateTimeInterface
     {
-        return $this->dateCreation;
+        return $this->dateFaite;
     }
 
-    public function setDateCreation(\DateTimeInterface $dateCreation): static
+    public function setDateFaite(?\DateTimeInterface $dateFaite): static
     {
-        $this->dateCreation = $dateCreation;
+        $this->dateFaite = $dateFaite;
 
         return $this;
+    }
+
+    public function isFinished()
+    {
+        return $this->dateFaite instanceof DateTime;
+    }
+
+    public function done()
+    {
+        $this->dateFaite = new DateTime();
     }
 }
