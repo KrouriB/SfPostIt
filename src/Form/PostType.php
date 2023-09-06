@@ -46,13 +46,6 @@ class PostType extends AbstractType
                 ]
             )
             ->add(
-                'dateCreation',
-                DateType::class,
-                // [
-                //     'data' => $dt,
-                // ]
-            )
-            ->add(
                 'information',
                 TinymceType::class,
                 [
