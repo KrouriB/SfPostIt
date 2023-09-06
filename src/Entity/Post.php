@@ -115,4 +115,9 @@ class Post
     {
         $this->dateFaite = new DateTime();
     }
+
+    public function notDone()
+    {
+        $this->dateFaite = NULL;
+    }
 }
