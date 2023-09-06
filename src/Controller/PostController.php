@@ -31,9 +31,14 @@ class PostController extends AbstractController
     #[Route('/post/{id}/refaire', name: 'app_refaire')]
     public function refaire(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $today = new \DateTime();
         $postId = $request->get('id');
 
         $post = $entityManager->getRepository(Post::class)->find($postId);
+
+        if ($post->getDateLimite() > $today) {
+            return $this->redirectToRoute('app_post');
+        }
 
         $post->notDone();
 
