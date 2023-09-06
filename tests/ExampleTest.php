@@ -3,21 +3,61 @@
 use App\Entity\Post;
 
 
-test('test si la date limite fonctionne', function () {
-    $date = new \DateTime('2024-01-01');
-    $post = new Post();
-    $post->setDateLimite($date);
-    expect($post->getDateLimite())->toBeGreaterThan(new \Datetime());
+// test('test si la date limite fonctionne', function () {
+//     $date = new \DateTime('2024-01-01');
+//     $post = new Post();
+//     $post->setDateLimite($date);
+//     expect($post->getDateLimite())->toBeGreaterThan(new \Datetime());
+// });
+
+// test('exception passé', function () {
+//     $date = new \DateTime('2023-01-01');
+//     $post = new Post();
+//     $post->setDateCreation(new \Datetime());
+//     expect($post->getDateCreation())->toBeGreaterThan($date);
+// });
+
+// test('not Terminer', function () {
+//     $post = new Post();
+//     expect($post->getEtat())->not->toBe('Terminer');
+// });
+
+
+// --> HAPPY PATH : chemin heureux --> cas normal de l'application
+it('should register a post with a future date' , function(){
+
+    //optionnel : arrange : mettre ton SUT (system under test) dans un etat connu
+
+    //act : executer les actions
+    $post = new Post(new DateTime('2024-01-01'));
+
+    //assert : verifier l'etat modifié
+    $today = new DateTime();
+    expect($post->getDateLimite())->toBeGreaterThan($today);
+
 });
 
-test('exception passé', function () {
-    $date = new \DateTime('2023-01-01');
+
+// SAD PATH -> chemin pas heureux --> cas d'utilisation problematique
+it('should not register a post with a past expiration date' , function(){
+
+    //act : executer les actions
+    $post = new Post(new DateTime('2022-01-01'));
+
+})->throws(InvalidArgumentException::class);
+
+
+it('should not register a post if status is done at creation', function () {
+
     $post = new Post();
-    $post->setDateCreation(new \Datetime());
-    expect($post->getDateCreation())->toBeGreaterThan($date);
+    expect($post->isFinished())->toBeFalse();
+
 });
 
-test('not Terminer', function () {
+it('should detect a post as finished if done date is defined', function () {
+
     $post = new Post();
-    expect($post->getEtat())->not->toBe('Terminer');
+    $post->done();
+
+    expect($post->isFinished())->toBeTrue();
 });
