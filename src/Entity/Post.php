@@ -118,6 +118,6 @@ class Post
 
     public function notDone()
     {
-        $this->dateFaite = NULL;
+        $this->dateFaite = null;
     }
 }
