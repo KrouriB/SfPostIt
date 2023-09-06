@@ -1,7 +1,9 @@
 <?php
 
 use App\Entity\Post;
-
+use App\DataFixtures\PostFixtures;
+use App\Repository\PostRepository;
+use Doctrine\Persistence\ObjectManager;
 
 // test('test si la date limite fonctionne', function () {
 //     $date = new \DateTime('2024-01-01');
@@ -61,3 +63,13 @@ it('should detect a post as finished if done date is defined', function () {
 
     expect($post->isFinished())->toBeTrue();
 });
+
+it('should have 10 item from the query where the post is done', function(PostRepository $postRepository){
+    
+    $finished = $postRepository->findByPostTerminer();
+    expect($finished)->toHaveCount(10);
+});
+
+// it('should have 20 item after modifing try', function(PostRepository $postRepository){
+//     $todo = $postRepository->findByPostAFaire();
+// });
