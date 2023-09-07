@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+// use DateTime;
 use DateInterval;
 use App\Entity\Post;
+// use DateTimeInterface;
 use Symfony\Component\Form\AbstractType;
 use Eckinox\TinymceBundle\Form\Type\TinymceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -45,6 +47,14 @@ class PostType extends AbstractType
                     // ]
                 ]
             )
+            // ->add(
+            //     'dateCreation',
+            //     HiddenType::class,
+            //     [
+            //         'data' => new DateTime(),
+            //         'data_class' => DateTimeInterface::class
+            //     ]
+            // )
             ->add(
                 'information',
                 TinymceType::class,
