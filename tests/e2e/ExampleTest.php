@@ -15,20 +15,18 @@ it('should show a page', function () {
 it('should create a post', function () {
     $postRepository = $this->container->get(PostRepository::class);
     $crawler = $this->client->request('GET' , '/post/new');
-    // $this->assertSame(200, $this->client->getResponse()->getStatusCode());
-    dd($crawler);
+    $this->assertSame(200, $this->client->getResponse()->getStatusCode());
 
-    $form = $crawler->selectButton('valider')->form();
+    $form = $crawler->selectButton('post_valider')->form();
+    $form['post[titre]']->setValue('Pest test');
+    $form['post[information]']->setValue('Test via pest');
+    $form['post[dateLimite]']->setValue('2023/12/23');
     // dd($form);
-    $form['titre']->setValue('Pest test');
-    $form['information']->setValue('Test via pest');
-    $form['dateLimite']->setValue('2023/12/23');
 
     $this->client->submit($form);
-    
-    $this->assertTrue($client->getResponse()->isRedirect());
 
     $all = $postRepository->findAll();
+
     // dd($all);
     
     expect($all)->toHaveCount(21);
