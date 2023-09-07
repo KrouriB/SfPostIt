@@ -1,9 +1,6 @@
 <?php
 
 use App\Entity\Post;
-use App\DataFixtures\PostFixtures;
-use App\Repository\PostRepository;
-use Doctrine\Persistence\ObjectManager;
 
 // test('test si la date limite fonctionne', function () {
 //     $date = new \DateTime('2024-01-01');
