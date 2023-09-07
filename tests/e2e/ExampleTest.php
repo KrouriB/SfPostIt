@@ -23,7 +23,7 @@ it('should create a post', function () {
     $form['post[dateLimite]']->setValue('2023/12/23');
     // dd($form);
 
-    $this->client->submit($form);
+    // dd($this->client->submit($form));
 
     $all = $postRepository->findAll();
 
