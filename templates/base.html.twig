@@ -10,13 +10,13 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
-            <script src="{{ asset('bundles/tinymce/ext/tinymce/tinymce.min.js') }}"></script>
-            <script src="{{ asset('bundles/tinymce/ext/tinymce-webcomponent.js') }}" type="module"></script>
-            <script>
+            {# <script src="{{ asset('bundles/tinymce/ext/tinymce/tinymce.min.js') }}"></script>
+            <script src="{{ asset('bundles/tinymce/ext/tinymce-webcomponent.js') }}" type="module"></script> #}
+            {# <script>
                 tinymce.init({
                     selector: 'textarea#post_information'
                 })
-            </script>
+            </script> #}
             <script>
                 // On page load or when changing themes, best to add inline in `head` to avoid FOUC
                 if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
