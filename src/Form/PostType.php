@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
 
 class PostType extends AbstractType
@@ -57,10 +58,11 @@ class PostType extends AbstractType
             // )
             ->add(
                 'information',
-                TinymceType::class,
+                TextareaType::class,
                 [
                     'attr' => [
-                        "toolbar" => "bold italic underline | bullist numlist",
+                        // "toolbar" => "bold italic underline | bullist numlist",
+                        'class' => 'form-control'
                     ]
                 ]
             )
