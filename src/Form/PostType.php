@@ -7,7 +7,7 @@ use DateInterval;
 use App\Entity\Post;
 // use DateTimeInterface;
 use Symfony\Component\Form\AbstractType;
-use Eckinox\TinymceBundle\Form\Type\TinymceType;
+// use Eckinox\TinymceBundle\Form\Type\TinymceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -59,12 +59,12 @@ class PostType extends AbstractType
             ->add(
                 'information',
                 TextareaType::class,
-                [
-                    'attr' => [
+                // [
+                //     'attr' => [
                         // "toolbar" => "bold italic underline | bullist numlist",
-                        'class' => 'form-control'
-                    ]
-                ]
+                //         'class' => 'form-control'
+                //     ]
+                // ]
             )
             ->add(
                 'valider',
