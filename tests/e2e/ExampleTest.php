@@ -14,16 +14,17 @@ it('should show a page', function () {
 
 it('should create a post', function () {
     $postRepository = $this->container->get(PostRepository::class);
-    $crawler = $this->client->request('GET' , '/post/new');
+    $crawler = $this->client->request('GET' , '/post');
     $this->assertSame(200, $this->client->getResponse()->getStatusCode());
 
     $form = $crawler->selectButton('post_valider')->form();
     $form['post[titre]']->setValue('Pest test');
     $form['post[information]']->setValue('Test via pest');
-    $form['post[dateLimite]']->setValue('2023/12/23');
+    $form['post[dateLimite]']->setValue('2023-12-23');
     // dd($form);
 
     // dd($this->client->submit($form));
+    $this->client->submit($form);
 
     $all = $postRepository->findAll();
 
