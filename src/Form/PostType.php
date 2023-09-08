@@ -48,20 +48,12 @@ class PostType extends AbstractType
                     // ]
                 ]
             )
-            // ->add(
-            //     'dateCreation',
-            //     HiddenType::class,
-            //     [
-            //         'data' => new DateTime(),
-            //         'data_class' => DateTimeInterface::class
-            //     ]
-            // )
             ->add(
                 'information',
                 TextareaType::class,
                 // [
                 //     'attr' => [
-                        // "toolbar" => "bold italic underline | bullist numlist",
+                // "toolbar" => "bold italic underline | bullist numlist",
                 //         'class' => 'form-control'
                 //     ]
                 // ]
