@@ -48,9 +48,10 @@ class PostController extends AbstractController
         return $this->redirectToRoute('app_post');
     }
 
-    #[Route('/post/new', name: 'app_new')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/post', name: 'app_post')]
+    public function index(PostRepository $postRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
+
         $post = new Post();
 
         $form = $this->createForm(PostType::class, $post);
@@ -66,25 +67,12 @@ class PostController extends AbstractController
         }
 
         $today = date('Y-m-d');
-        return $this->render(
-            'post/new.html.twig',
-            [
-                'post' => $form->createView(),
-                'today' => $today,
-            ]
-        );
-    }
-
-    #[Route('/post', name: 'app_post')]
-    public function index(PostRepository $postRepository): Response
-    {
-
-        $today = date('Y-m-d');
         $aFaire = $postRepository->findByPostAFaire();
         $terminer = $postRepository->findByPostTerminer();
         return $this->render(
             'post/index.html.twig',
             [
+                'post' => $form->createView(),
                 'today' => $today,
                 'aFaire' => $aFaire,
                 'terminer' => $terminer,
