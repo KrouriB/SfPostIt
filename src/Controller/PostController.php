@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PostController extends AbstractController
@@ -47,6 +48,44 @@ class PostController extends AbstractController
 
         return $this->redirectToRoute('app_post');
     }
+
+    #[Route('/post/ajax', name: 'app_ajax')]
+    public function ajaxAdd(Request $request): JsonResponse
+    {
+        // Your logic here
+
+        $data = [
+            'message' => 'This is an AJAX response.',
+        ];
+
+        return new JsonResponse($data);
+    }
+
+    // #[Route('/post/new', name: 'app_new')]
+    // public function new(Request $request, EntityManagerInterface $entityManager): Response
+    // {
+
+    //     $post = new Post();
+
+    //     $form = $this->createForm(PostType::class, $post);
+
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $post = $form->getData();
+    //         $entityManager->persist($post);
+    //         $entityManager->flush();
+    //     }
+
+    //     $today = date('Y-m-d');
+    //     return $this->render(
+    //         'post/index.html.twig',
+    //         [
+    //             'post' => $form->createView(),
+    //             'today' => $today,
+    //         ]
+    //     );
+    // }
 
     #[Route('/post', name: 'app_post')]
     public function index(PostRepository $postRepository, Request $request, EntityManagerInterface $entityManager): Response

@@ -4,6 +4,9 @@
 
 {% block body %}
 <div class="m-5 flex flex-col justify-start">
+    {# {{ render(controller(
+        'App\\Controller\\PostController::new')
+    ) }} #}
     {{ form_errors(post) }}
 
     {{ form_start(post) }}

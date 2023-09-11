@@ -38,3 +38,20 @@ themeToggleBtn.addEventListener('click', function() {
     }
     
 });
+
+document.getElementById('post_valider').addEventListener('click', function() {
+    var xhr = new XMLHttpRequest();
+    
+    xhr.open('GET', '/post/ajax', true);
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            alert(response.message);
+        } else {
+            alert('An error occurred');
+        }
+    };
+
+    xhr.send();
+});
