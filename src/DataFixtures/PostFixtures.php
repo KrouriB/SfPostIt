@@ -35,7 +35,6 @@ class PostFixtures extends Fixture
             $manager->persist($post);
             $manager->flush();
         }
-        $manager->flush();
         for ($count = 0; $count < 10; $count++) {
             $post = new Post();
 
